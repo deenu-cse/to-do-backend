@@ -1,8 +1,8 @@
 const { genToken } = require("../helpers/gentoken");
-const User = require("../models/userMOdel");
 const Task = require("../models/taskModel");
 const bcrypt = require('bcryptjs');
 const { decodeToken } = require("../helpers/verifyToken");
+const User = require("../models/userModels");
 
 const SignUp = async (req, res) => {
     try {
