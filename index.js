@@ -1,25 +1,24 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const Routes = require('./routes/allroutes');
 const { dbConnect } = require('./utils/db');
 
 const app = express();
 
-
-app.use(express.json());
-
 const corsOptions = {
-    origin: ['https://todolist-theta-silk.vercel.app'],
+    origin: 'https://todolist-theta-silk.vercel.app', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
-app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); 
 
+app.use(express.json());
 
-app.use('/', Routes)
+app.use('/', Routes);
 
 app.get('/', (req, res) => {
     res.send('Hello, from to-do server');
@@ -27,8 +26,7 @@ app.get('/', (req, res) => {
 
 dbConnect();
 
-const port = process.env.PORT
-
+const port = process.env.PORT || 9000;
 app.listen(port, () => {
-    console.log("Server is running at 9000");
-})
+    console.log(`Server is running at ${port}`);
+});
