@@ -10,12 +10,13 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-    origin: ['https://todolist-theta-silk.vercel.app'], 
+    origin: ['https://todolist-theta-silk.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
-  };
-  
-  app.use(cors(corsOptions));
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.options('*', cors(corsOptions));
 
 
 app.use('/', Routes)
